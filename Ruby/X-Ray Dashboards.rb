@@ -1,4 +1,17 @@
-# X-Ray Dashboards.rb - this Ruby script Copyright 2013-2015 Christopher Gerrard
+#  Copyright (C) 2014, 2015  Chris Gerrard
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 require 'twb'
 
@@ -35,7 +48,7 @@ $localurl    = 'file:///' + Dir.pwd + '/'
       # invalid file name Characters. or when the name is
       # an invalid file name.
       # Stripping the non-ASCII characters from the Dashboard
-      # name fixes this, in the cases see so far.
+      # name fixes this, in the cases seen so far.
       # This rescue-recursion technique can potentially cause
       # an infite-loop condition. (not seen, but possible)
       saveHTML( sanitize(htmlfilename), html)

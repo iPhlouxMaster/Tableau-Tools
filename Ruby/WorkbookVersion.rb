@@ -13,34 +13,16 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'nokogiri'
-
 require 'twb'
 
-def processTWB twbWithDir
-  puts "\t -- #{twbWithDir}"
-  twb    = Twb::Workbook.new(twbWithDir)
-  sheets = twb.worksheetNames
-  dashes = twb.dashboardNames
-  dashhash = {}
-  twb.dashboards.each do |dsh|
-    dashsheets = nil
-    if dsh.worksheets
-      dashsheets = []
-      dsh.worksheets.each do |sheet|
-        dashsheets.push(sheet.name) unless sheet.nil?
-      end
-    end
-    dashhash[dsh.name] = dashsheets
-  end
-  doc = Twb::HTMLListCollapsible.new(dashhash)
-  doc.title="Dashboards & their Worksheets for #{twbWithDir}"
-  doc.write("#{twbWithDir}.dashboards.html")
-end
+puts "\n\n Identifying the Version and Build of these Workbooks:\n\n"
 
-system "cls"
-puts "\n\n\tIdentifying the Worksheets in these Workbooks' Dashboards:"
+$csv = File.open("WorkbookVersion.csv", "w")
+$csv << "Workbook,Version,Build\n"
 
 path = if ARGV.empty? then '*.twb' else ARGV[0] end
-
-Dir.glob(path) {|twb| processTWB twb }
+Dir.glob(path) do |fname|
+  twb    = Twb::Workbook.new(fname)
+       puts sprintf("  %-20s %5s  %s", twb.name, twb.version, twb.build)
+  $csv.puts "#{twb.name},#{twb.version},#{twb.build}"
+end

@@ -21,8 +21,9 @@ $csv = File.open("WorkbookVersion.csv", "w")
 $csv << "Workbook,Version,Build\n"
 
 path = if ARGV.empty? then '*.twb' else ARGV[0] end
+puts "Looking for TWBs using: #{path}"
 Dir.glob(path) do |fname|
-  twb    = Twb::Workbook.new(fname)
-       puts sprintf("  %-20s %5s  %s", twb.name, twb.version, twb.build)
-  $csv.puts "#{twb.name},#{twb.version},#{twb.build}"
+  twb = Twb::Workbook.new(fname)
+  puts sprintf("  %-20s %5s  %s", twb.name, twb.version, twb.build)
+  $csv.puts "\"#{twb.name}\",#{twb.version},#{twb.build}"
 end

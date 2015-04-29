@@ -18,9 +18,9 @@ require 'twb'
 system "cls"
 
 $doctwb      = true
-$replacetwb  = false
+$replacetwb  = false                      # true|false - replace/new name TWB
 $dashdoclbl  = 'dashdoc'
-$localurl    = 'file:///' + Dir.pwd + '/'
+$localurl    = 'file:///' + Dir.pwd + '/' # for Dashboard Web Page objects
 
   def xray twbname
     twb    = Twb::Workbook.new(twbname)
@@ -37,7 +37,7 @@ $localurl    = 'file:///' + Dir.pwd + '/'
     end
     puts "\t    #{cnt} \t       #{twbname}"
   end
-  
+
   def saveHTML(htmlfilename, html)
     begin
       htmlfile = File.open(htmlfilename, 'w')
@@ -54,7 +54,7 @@ $localurl    = 'file:///' + Dir.pwd + '/'
       saveHTML( sanitize(htmlfilename), html)
     end
   end
-  
+
   def inject(twb, dashboard, htmlfilename)
     vDash = Twb::DocDashboardWebVert.new
     vDash.title=('Doc Dashboard: ' + sanitize(dashboard))
@@ -66,13 +66,15 @@ $localurl    = 'file:///' + Dir.pwd + '/'
       twb.writeAppend($dashdoclbl)
     end
   end
-  
+
   def sanitize(str)
     str.gsub(/[^a-z0-9\-]+/i, ' ')
   end
 
 system 'cls'
-puts "\n\n\t X-raying Dashboards\n\n\t # Dashboards  Workbook\n\t ------------  ----------------------"
+puts "\n\n\t X-raying Dashboards"
+puts "\n\n\t # Dashboards  Workbook"
+puts   "\n\t ------------  ----------------------"
 
 path = if ARGV.empty? then '*.twb' else ARGV[0] end
 Dir.glob(path) {|twb| xray twb }

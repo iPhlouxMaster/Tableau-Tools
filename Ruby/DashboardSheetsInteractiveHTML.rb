@@ -18,6 +18,7 @@ require 'nokogiri'
 require 'twb'
 
 def processTWB twbWithDir
+  return if twbWithDir  =~ /dashdoc/
   puts "\t -- #{twbWithDir}"
   twb    = Twb::Workbook.new(twbWithDir)
   sheets = twb.worksheetNames
@@ -34,7 +35,7 @@ def processTWB twbWithDir
     dashhash[dsh.name] = dashsheets
   end
   doc = Twb::HTMLListCollapsible.new(dashhash)
-  doc.title="Dashboards & their Worksheets for #{twbWithDir}"
+  doc.title="#{twbWithDir}"
   doc.write("#{twbWithDir}.dashboards.html")
 end
 

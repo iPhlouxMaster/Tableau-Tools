@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//Dth HTML 3.2 Final//EN">
+<HTML>
+<HEAD><TITLE>ProductDashboard Schematic</TITLE>
+<META NAME="Generator" CONTENT="xraydashboards.rb">
+<META NAME="Author" CONTENT="Chris Gerrard">
+<META NAME="Copyright" CONTENT="2012, 2015 Chris Gerrard all rights reserved.">
+<META NAME="Keywords" CONTENT="xraydashboards.rb TWB Tools">
+<META NAME="Description" CONTENT="Creates an interactive diagram of Tableau dashboard components with associated table of values.">
+<style>
+#LeftTitle   {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 5px 0 0;   vertical-align:top; text-align:left;}
+#RightTitle  {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 0   0 10px; vertical-align:top;}
+#LeftColumn  {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 5px 0 0;   vertical-align:top; text-align:left;}
+#RightColumn {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 0   0 10px; vertical-align:top;}
+table              { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border-collapse:collapse;padding:5 15 5 10; text-align:right;}
+table td, table th { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border:3px solid #B0C4DE; padding:0 0 0 0; }
+table th           { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; font-size:.8em; background-color:lightgrey; color:black; }
+table tr.alt td    { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border:1px solid #B0C4DE; color:#000; background-color:#EAF2D3; }
+</style>
+<script>
+    var oldFill  = ''
+    var oldOpac  = ''
+    var oldStroW = ''
+    var origLColWidth = "600.0"
+    var origSvgWidth  = "100500"
+    var origSvgHeight = "100500"
+    var origSvgScale  = "0.005970149253731343"
+
+function highlightDashComponent(id)
+{
+  element =  document.getElementById(id)
+  oldFill = element.getAttribute('fill')
+  oldOpac = element.getAttribute('opacity')
+  oldStroW = element.getAttribute('stroke-width')
+  element.setAttribute('fill','darkgrey')
+  element.setAttribute('opacity','1')
+  element.setAttribute('stroke-width','800')
+  // alert(id + ' HIGH fill: ' + oldFill)
+}
+function resetDashComponent(id)
+{
+  element =  document.getElementById(id)
+  element.setAttribute('fill',oldFill)
+  element.setAttribute('opacity',oldOpac)
+  element.setAttribute('stroke-width',oldStroW)
+}
+    function scaleDash(){
+      var svg  = document.getElementById("svg");
+      var lCol = document.getElementById("LeftColumn");
+
+      var sf = document.getElementById("scaleFactor").value;
+      var scale = 1;
+      var spct  = sf;
+      if (isNaN(sf))
+         { scale = 1;
+           spct  = 100
+         }
+      else if (sf < 10)
+         { scale = .1 ;
+           spct  = 10
+         }
+      else if (sf > 100)
+         { scale = 1 ;
+           spct  = 100
+         }
+      else
+         { scale = sf / 100 ;
+           spct  = sf
+         }
+
+      var newLColWidth = (origLColWidth * scale) + 5
+      var newSvgWidth  = origSvgWidth  * scale
+      var newSvgHeight = origSvgHeight * scale
+      var newSvgScale  = origSvgScale  * scale
+      var newSvgTransf = "translate(10,10) scale(" + newSvgScale + ")"
+
+      document.getElementById("LeftColumn").setAttribute("width",newLColWidth);
+      svg.setAttribute("width", newSvgWidth)
+      svg.setAttribute("height",newSvgHeight)
+      svg.getElementById("svgTransform").setAttribute("transform",newSvgTransf)
+
+      var newDivWidthPx  = newLColWidth + "px"
+      var newDivWidthStr = "display:block;width:" + newDivWidthPx
+      document.getElementById('LeftColumn').setAttribute("style",newDivWidthStr);
+      document.getElementById('LeftColumn').style.width=newDivWidthPx;
+
+      var r  = document.getElementById("result");
+      r.innerHTML = "scale: " + spct + "%" // + document.getElementById("LeftColumn").getAttribute("width")
+    }
+
+</script>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div id='LeftTitle' width='45%'>
+        <p><span style='font: normal 16px Verdana, Calibri, Geneva, sans-serif; color: #000000;padding: 0px 10px 0px 15px;'>Superstore.twb</span><br />
+           <span style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;padding: 10px 10px 0px 15px;'>Dashboard: "Product" #3 of 4 </span></p>
+    </div>
+    <div id='RightTitle' width='45%'>
+        <p><span style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #351c75;padding: 10px 10px 0px 15px;'>
+           Resize the Dashboard, from 10-100% :
+           </span>
+        <input id='scaleFactor' type='range' min='10' max='100' value='100' step='5' onChange='scaleDash();'> <span id='result' style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #351c75;padding: 10px 10px 0px 15px;'>scale: 100%</span>
+        </p>
+    </div>
+    <div style='clear:both;'></div>
+<div id="LeftColumn" width="620"><svg id='svg' width='620.0'
+              height='620.0'
+              version='1.1'
+              xmlns='http://www.w3.org/2000/svg'>
+              <g id="svgTransform" transform="translate(10,10) scale(0.005970149253731343)">
+<g>
+<rect id="2-:-1-:-1" width="100000" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100500" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="16-:-2-:-2" width="100000" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100500" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="14-:-3-:-3" width="99729" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100229" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="12-:-4-:-4" width="99729" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100229" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="10-:-5-:-5" width="99729" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="500"   x2="100229" y2="100500" style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="9-:-6-:-6" width="99729" height="6844" x="200" y="200" rx="3000" ry="3000" fill="#5F9EA0" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+</g>
+
+<g>
+<rect id="5-:-7-:-7" width="99729" height="93156" x="500" y="7344" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100229" y2="7344"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="3-:-8-:-8" width="99729" height="93156" x="500" y="7344" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100229" y2="7344"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="1-:-9-:-9" width="86847" height="46579" x="200" y="7044" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="41295"                 y="24511"             width="2328" height="11644"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="44787.0"  y="30333" width="2328" height="5822" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="8-:-10-:-10" width="86847" height="46577" x="200" y="53623" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="41295"                 y="71089"             width="2328" height="11644"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="44787.0"  y="76911" width="2328" height="5822" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="20-:-11-:-11" width="12882" height="87240" x="87347" y="13260" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="87347"   y1="13260"   x2="100229" y2="100500" style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="25-:-12-:-12" width="12610" height="14153" x="87183" y="13192" rx="3000" ry="3000" fill="#228B22" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+<text x="91488" y="21268" id="FilterYes" font-size="2000" font-family="Verdana,Arial">&#x2713; X</text>
+</g>
+
+<g>
+<rect id="22-:-13-:-13" width="12610" height="7309" x="87183" y="27345" rx="3000" ry="3000" fill="#CD853F" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="89488"          y="29999" width="2000" height="2000" fill="blue"  stroke-width="none" stroke="none" opacity="1"/>
+<rect x="92488.0"  y="29999" width="2000" height="2000" fill="red"   stroke-width="none" stroke="none" opacity="1"/>
+<rect x="95488"  y="29999" width="2000" height="2000" fill="green" stroke-width="none" stroke="none" opacity="1"/>
+
+</g>
+
+<g>
+<rect id="23-:-14-:-14" width="12610" height="7309" x="87183" y="34654" rx="3000" ry="3000" fill="#CD853F" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="89488"          y="37308" width="2000" height="2000" fill="blue"  stroke-width="none" stroke="none" opacity="1"/>
+<rect x="92488.0"  y="37308" width="2000" height="2000" fill="red"   stroke-width="none" stroke="none" opacity="1"/>
+<rect x="95488"  y="37308" width="2000" height="2000" fill="green" stroke-width="none" stroke="none" opacity="1"/>
+
+</g>
+
+<g>
+<rect id="24-:-15-:-15" width="12610" height="57541" x="87183" y="41963" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+<text x="91988" y="71233" font-size="2000" font-family="Verdana,Arial">[ ]</text>
+</g>
+
+<g>
+<rect id="26-:-16-:-16" width="12882" height="5916" x="87047" y="7044" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+<text x="91988" y="10502" font-size="2000" font-family="Verdana,Arial">[ ]</text>
+</g>
+</g>
+</svg></div><div id="RightColumn"><p style="font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;">The Dashboard's panels, one per row.<br />Mousing over the table highlights the Dashboard's panels in the diagram.</p><table>
+<tr><th align='left'>Zone Name</th><th align='left'>Type</th><th>x</th><th>y</th><th>w</th><th>h</th><th>ID</th></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('2-:-1-:-1')" onMouseOut="resetDashComponent('2-:-1-:-1')">    <td style='text-align: left;'>|</td>    <td style='text-align: left;'>Layout - Basic</td>    <td>500</td>    <td>500</td>    <td>100,000</td>    <td>100,000</td>    <td>2.1.1</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('16-:-2-:-2')" onMouseOut="resetDashComponent('16-:-2-:-2')">    <td style='text-align: left;'>&ndash;|</td>    <td style='text-align: left;'>Layout - Horizontal</td>    <td>500</td>    <td>500</td>    <td>100,000</td>    <td>100,000</td>    <td>16.2.2</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('14-:-3-:-3')" onMouseOut="resetDashComponent('14-:-3-:-3')">    <td style='text-align: left;'>&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Horizontal</td>    <td>500</td>    <td>500</td>    <td>99,729</td>    <td>100,000</td>    <td>14.3.3</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('12-:-4-:-4')" onMouseOut="resetDashComponent('12-:-4-:-4')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Horizontal</td>    <td>500</td>    <td>500</td>    <td>99,729</td>    <td>100,000</td>    <td>12.4.4</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('10-:-5-:-5')" onMouseOut="resetDashComponent('10-:-5-:-5')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Vertical</td>    <td>500</td>    <td>500</td>    <td>99,729</td>    <td>100,000</td>    <td>10.5.5</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('9-:-6-:-6')" onMouseOut="resetDashComponent('9-:-6-:-6')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Title</td>    <td>200</td>    <td>200</td>    <td>99,729</td>    <td>6,844</td>    <td>9.6.6</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('5-:-7-:-7')" onMouseOut="resetDashComponent('5-:-7-:-7')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Horizontal</td>    <td>500</td>    <td>7,344</td>    <td>99,729</td>    <td>93,156</td>    <td>5.7.7</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('3-:-8-:-8')" onMouseOut="resetDashComponent('3-:-8-:-8')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Basic</td>    <td>500</td>    <td>7,344</td>    <td>99,729</td>    <td>93,156</td>    <td>3.8.8</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('1-:-9-:-9')" onMouseOut="resetDashComponent('1-:-9-:-9')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|ProductView</td>    <td style='text-align: left;'>chart</td>    <td>200</td>    <td>7,044</td>    <td>86,847</td>    <td>46,579</td>    <td>1.9.9</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('8-:-10-:-10')" onMouseOut="resetDashComponent('8-:-10-:-10')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|ProductDetails</td>    <td style='text-align: left;'>chart</td>    <td>200</td>    <td>53,623</td>    <td>86,847</td>    <td>46,577</td>    <td>8.10.10</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('20-:-11-:-11')" onMouseOut="resetDashComponent('20-:-11-:-11')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Vertical</td>    <td>87,347</td>    <td>13,260</td>    <td>12,882</td>    <td>87,240</td>    <td>20.11.11</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('25-:-12-:-12')" onMouseOut="resetDashComponent('25-:-12-:-12')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|ProductView</td>    <td style='text-align: left;'>Filter</td>    <td>87,183</td>    <td>13,192</td>    <td>12,610</td>    <td>14,153</td>    <td>25.12.12</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('22-:-13-:-13')" onMouseOut="resetDashComponent('22-:-13-:-13')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|ProductView</td>    <td style='text-align: left;'>Color Legend</td>    <td>87,183</td>    <td>27,345</td>    <td>12,610</td>    <td>7,309</td>    <td>22.13.13</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('23-:-14-:-14')" onMouseOut="resetDashComponent('23-:-14-:-14')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|ProductDetails</td>    <td style='text-align: left;'>Color Legend</td>    <td>87,183</td>    <td>34,654</td>    <td>12,610</td>    <td>7,309</td>    <td>23.14.14</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('24-:-15-:-15')" onMouseOut="resetDashComponent('24-:-15-:-15')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Blank</td>    <td>87,183</td>    <td>41,963</td>    <td>12,610</td>    <td>57,541</td>    <td>24.15.15</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('26-:-16-:-16')" onMouseOut="resetDashComponent('26-:-16-:-16')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Blank</td>    <td>87,047</td>    <td>7,044</td>    <td>12,882</td>    <td>5,916</td>    <td>26.16.16</td></tr></table>    <p><span style="font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;">
+       Note: the Dashboard's 'x', 'y', 'w', and 'h' values are shown as coded in the<br />Tableau Workbook.
+             It appears that the maximum value &ndash;100,000&ndash; indicates<br />
+             that the Dashboard size is set to Automatic, or Range with no upper limit.
+       </span>
+     </p>
+</div></BODY></HTML>

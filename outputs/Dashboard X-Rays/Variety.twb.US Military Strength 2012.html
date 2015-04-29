@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//Dth HTML 3.2 Final//EN">
+<HTML>
+<HEAD><TITLE>US Military Strength 2012Dashboard Schematic</TITLE>
+<META NAME="Generator" CONTENT="xraydashboards.rb">
+<META NAME="Author" CONTENT="Chris Gerrard">
+<META NAME="Copyright" CONTENT="2012, 2015 Chris Gerrard all rights reserved.">
+<META NAME="Keywords" CONTENT="xraydashboards.rb TWB Tools">
+<META NAME="Description" CONTENT="Creates an interactive diagram of Tableau dashboard components with associated table of values.">
+<style>
+#LeftTitle   {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 5px 0 0;   vertical-align:top; text-align:left;}
+#RightTitle  {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 0   0 10px; vertical-align:top;}
+#LeftColumn  {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 5px 0 0;   vertical-align:top; text-align:left;}
+#RightColumn {font: Verdana, Calibri, Geneva, sans-serif; font-size:1em; float:left; margin: 0 0   0 10px; vertical-align:top;}
+table              { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border-collapse:collapse;padding:5 15 5 10; text-align:right;}
+table td, table th { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border:3px solid #B0C4DE; padding:0 0 0 0; }
+table th           { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; font-size:.8em; background-color:lightgrey; color:black; }
+table tr.alt td    { font-family: Verdana, Calibri, Geneva, sans-serif; font-size:.9em; border:1px solid #B0C4DE; color:#000; background-color:#EAF2D3; }
+</style>
+<script>
+    var oldFill  = ''
+    var oldOpac  = ''
+    var oldStroW = ''
+    var origLColWidth = "600.0"
+    var origSvgWidth  = "100500"
+    var origSvgHeight = "100500"
+    var origSvgScale  = "0.005970149253731343"
+
+function highlightDashComponent(id)
+{
+  element =  document.getElementById(id)
+  oldFill = element.getAttribute('fill')
+  oldOpac = element.getAttribute('opacity')
+  oldStroW = element.getAttribute('stroke-width')
+  element.setAttribute('fill','darkgrey')
+  element.setAttribute('opacity','1')
+  element.setAttribute('stroke-width','800')
+  // alert(id + ' HIGH fill: ' + oldFill)
+}
+function resetDashComponent(id)
+{
+  element =  document.getElementById(id)
+  element.setAttribute('fill',oldFill)
+  element.setAttribute('opacity',oldOpac)
+  element.setAttribute('stroke-width',oldStroW)
+}
+    function scaleDash(){
+      var svg  = document.getElementById("svg");
+      var lCol = document.getElementById("LeftColumn");
+
+      var sf = document.getElementById("scaleFactor").value;
+      var scale = 1;
+      var spct  = sf;
+      if (isNaN(sf))
+         { scale = 1;
+           spct  = 100
+         }
+      else if (sf < 10)
+         { scale = .1 ;
+           spct  = 10
+         }
+      else if (sf > 100)
+         { scale = 1 ;
+           spct  = 100
+         }
+      else
+         { scale = sf / 100 ;
+           spct  = sf
+         }
+
+      var newLColWidth = (origLColWidth * scale) + 5
+      var newSvgWidth  = origSvgWidth  * scale
+      var newSvgHeight = origSvgHeight * scale
+      var newSvgScale  = origSvgScale  * scale
+      var newSvgTransf = "translate(10,10) scale(" + newSvgScale + ")"
+
+      document.getElementById("LeftColumn").setAttribute("width",newLColWidth);
+      svg.setAttribute("width", newSvgWidth)
+      svg.setAttribute("height",newSvgHeight)
+      svg.getElementById("svgTransform").setAttribute("transform",newSvgTransf)
+
+      var newDivWidthPx  = newLColWidth + "px"
+      var newDivWidthStr = "display:block;width:" + newDivWidthPx
+      document.getElementById('LeftColumn').setAttribute("style",newDivWidthStr);
+      document.getElementById('LeftColumn').style.width=newDivWidthPx;
+
+      var r  = document.getElementById("result");
+      r.innerHTML = "scale: " + spct + "%" // + document.getElementById("LeftColumn").getAttribute("width")
+    }
+
+</script>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+    <div id='LeftTitle' width='45%'>
+        <p><span style='font: normal 16px Verdana, Calibri, Geneva, sans-serif; color: #000000;padding: 0px 10px 0px 15px;'>Variety.twb</span><br />
+           <span style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;padding: 10px 10px 0px 15px;'>Dashboard: "US Military Strength 2012" #4 of 5 </span></p>
+    </div>
+    <div id='RightTitle' width='45%'>
+        <p><span style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #351c75;padding: 10px 10px 0px 15px;'>
+           Resize the Dashboard, from 10-100% :
+           </span>
+        <input id='scaleFactor' type='range' min='10' max='100' value='100' step='5' onChange='scaleDash();'> <span id='result' style='font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #351c75;padding: 10px 10px 0px 15px;'>scale: 100%</span>
+        </p>
+    </div>
+    <div style='clear:both;'></div>
+<div id="LeftColumn" width="620"><svg id='svg' width='620.0'
+              height='620.0'
+              version='1.1'
+              xmlns='http://www.w3.org/2000/svg'>
+              <g id="svgTransform" transform="translate(10,10) scale(0.005970149253731343)">
+<g>
+<rect id="2-:-1-:-1" width="100000" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100500" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="5-:-2-:-2" width="100000" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100500" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="3-:-3-:-3" width="99500" height="100000" x="500" y="500" fill="#B0C4DE" opacity="0.2" stroke-width="500" style="color:#000000;stroke:black;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1200, 1200;stroke-dashoffset:0;stroke-opacity:1;" />
+
+<line    x1="500"   y1="100500" x2="100000" y2="500"   style="stroke:grey;stroke-width:100"/>
+</g>
+
+<g>
+<rect id="1-:-4-:-4" width="99500" height="54375" x="200" y="200" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="47232"                 y="20591"             width="2718" height="13593"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="51309.0"  y="27387" width="2718" height="6796" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="12-:-5-:-5" width="24500" height="10272" x="75200" y="61825" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="86937"                 y="65677"             width="513" height="2568"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="87706.5"  y="66961" width="513" height="1284" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="13-:-6-:-6" width="24500" height="10842" x="75200" y="72097" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="86908"                 y="76163"             width="542" height="2710"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="87721.0"  y="77518" width="542" height="1355" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="8-:-7-:-7" width="24500" height="7250" x="75200" y="54575" rx="3000" ry="3000" fill="#228B22" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+<text x="84950" y="58700" font-size="2000" font-family="Verdana,Arial">>...<</text>
+</g>
+
+<g>
+<rect id="14-:-8-:-8" width="24500" height="17261" x="75200" y="82939" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="86587"                 y="89412"             width="863" height="4315"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="87881.5"  y="91569" width="863" height="2157" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="15-:-9-:-9" width="75000" height="45625" x="200" y="54575" rx="3000" ry="3000" fill="white" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="35419"                 y="71684"             width="2281" height="11406"   fill="blue"    stroke-width="200" stroke="black"/>
+<rect x="38840.5"  y="77387" width="2281" height="5703" fill="orange"  stroke-width="100" stroke="black"/>
+
+</g>
+
+<g>
+<rect id="7-:-10-:-10" width="47625" height="5875" x="1450" y="47200" rx="3000" ry="3000" fill="#CD853F" opacity="0.2" stroke-width="200" style="color:#000000;stroke:blue;stroke-opacity:1;" />
+
+<rect x="21262"          y="49137" width="2000" height="2000" fill="blue"  stroke-width="none" stroke="none" opacity="1"/>
+<rect x="24262.0"  y="49137" width="2000" height="2000" fill="red"   stroke-width="none" stroke="none" opacity="1"/>
+<rect x="27262"  y="49137" width="2000" height="2000" fill="green" stroke-width="none" stroke="none" opacity="1"/>
+
+</g>
+</g>
+</svg></div><div id="RightColumn"><p style="font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;">The Dashboard's panels, one per row.<br />Mousing over the table highlights the Dashboard's panels in the diagram.</p><table>
+<tr><th align='left'>Zone Name</th><th align='left'>Type</th><th>x</th><th>y</th><th>w</th><th>h</th><th>ID</th></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('2-:-1-:-1')" onMouseOut="resetDashComponent('2-:-1-:-1')">    <td style='text-align: left;'>|</td>    <td style='text-align: left;'>Layout - Basic</td>    <td>500</td>    <td>500</td>    <td>100,000</td>    <td>100,000</td>    <td>2.1.1</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('5-:-2-:-2')" onMouseOut="resetDashComponent('5-:-2-:-2')">    <td style='text-align: left;'>&ndash;|</td>    <td style='text-align: left;'>Layout - Horizontal</td>    <td>500</td>    <td>500</td>    <td>100,000</td>    <td>100,000</td>    <td>5.2.2</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('3-:-3-:-3')" onMouseOut="resetDashComponent('3-:-3-:-3')">    <td style='text-align: left;'>&ndash;&ndash;|</td>    <td style='text-align: left;'>Layout - Basic</td>    <td>500</td>    <td>500</td>    <td>99,500</td>    <td>100,000</td>    <td>3.3.3</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('1-:-4-:-4')" onMouseOut="resetDashComponent('1-:-4-:-4')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|USD M</td>    <td style='text-align: left;'>chart</td>    <td>200</td>    <td>200</td>    <td>99,500</td>    <td>54,375</td>    <td>1.4.4</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('12-:-5-:-5')" onMouseOut="resetDashComponent('12-:-5-:-5')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|USD T1</td>    <td style='text-align: left;'>chart</td>    <td>75,200</td>    <td>61,825</td>    <td>24,500</td>    <td>10,272</td>    <td>12.5.5</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('13-:-6-:-6')" onMouseOut="resetDashComponent('13-:-6-:-6')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|USD T2</td>    <td style='text-align: left;'>chart</td>    <td>75,200</td>    <td>72,097</td>    <td>24,500</td>    <td>10,842</td>    <td>13.6.6</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('8-:-7-:-7')" onMouseOut="resetDashComponent('8-:-7-:-7')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|</td>    <td style='text-align: left;'>Parameter</td>    <td>75,200</td>    <td>54,575</td>    <td>24,500</td>    <td>7,250</td>    <td>8.7.7</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('14-:-8-:-8')" onMouseOut="resetDashComponent('14-:-8-:-8')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|USD Table</td>    <td style='text-align: left;'>chart</td>    <td>75,200</td>    <td>82,939</td>    <td>24,500</td>    <td>17,261</td>    <td>14.8.8</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('15-:-9-:-9')" onMouseOut="resetDashComponent('15-:-9-:-9')">    <td style='text-align: left;'>&ndash;&ndash;&ndash;|USD B (2)</td>    <td style='text-align: left;'>chart</td>    <td>200</td>    <td>54,575</td>    <td>75,000</td>    <td>45,625</td>    <td>15.9.9</td></tr>
+<tr style="cursor: pointer;" onMouseOver="highlightDashComponent('7-:-10-:-10')" onMouseOut="resetDashComponent('7-:-10-:-10')">    <td style='text-align: left;'>|USD M</td>    <td style='text-align: left;'>Color Legend</td>    <td>1,450</td>    <td>47,200</td>    <td>47,625</td>    <td>5,875</td>    <td>7.10.10</td></tr></table>    <p><span style="font: normal 12px Verdana, Calibri, Geneva, sans-serif; color: #000000;">
+       Note: the Dashboard's 'x', 'y', 'w', and 'h' values are shown as coded in the<br />Tableau Workbook.
+             It appears that the maximum value &ndash;100,000&ndash; indicates<br />
+             that the Dashboard size is set to Automatic, or Range with no upper limit.
+       </span>
+     </p>
+</div></BODY></HTML>

@@ -15,18 +15,33 @@
 
 require 'twb'
 
+# to overwrite the original TWB, set $resetTWBextension = ''
 $resetTWBextension = '.reset'
 
 $resets = []
 
-# Accept a Workbook name and process it, removing field caption.
-# The intent is to reverse Tableau's practice of altering the names
-# presented to Users in the Data window.
-# Tableau does two primary things
+# Accept a Workbook name and process it, removing field captions.
+#
+# The intent is to reverse Tableau's practice of altering the field names
+# presented to Users in the Data window. When the names presented to the
+# User are different from the database names Tableau uses a "caption" attribute
+# to record the User name, i.e. it's the presence of the caption that signals
+# Tableau to display the caption instead of the database field name.
+#
+# When Tableau initially opens a data connection and identifies field names that
+# it determines need adjusting, it does at least these two things:
 # - Replace underscores with blanks &ndash; 'this_is_a_field' -> 'this is a field'
 # - Proper noun casing &ndash; 'this is a field' -> 'This Is A Field'
+#
 # While this is often desirable, there are many instances where it's contrary to
 # the intentions of the Tableau user and the data managers.
+# This script resets those field names that have been captioned to their original
+# database names by removing the captions, in which case Tableau uses the database
+# name for the field in the data window.
+#
+# Note: Calculated fields have captions but should not be de-captioned since they're
+#       not actual database fields.
+#
 def processTWB twbName
   return if twbName  =~ /$resetTWBextension/
   puts "\t -- #{twbName}"
@@ -61,4 +76,5 @@ if !$resets.empty?
    csv.close unless csv.nil?
 end
 
-puts "\n\n\t\tReset #{$resets.length} fields' names."
+puts "\n\n\tReset #{$resets.length} fields' names."
+puts   "\n\tThe reset fields are recorded in \"ResetFields.csv\"\n\n"

@@ -71,7 +71,7 @@ Dir.glob(path) {|twb| processTWB twb }
 
 if !$resets.empty?
    csv = File.open("ResetFields.csv", 'w')
-   csv.puts "Workbook.Data Connection,Field Name,Field Caption"
+   csv.puts "Workbook,Data Connection,Field Name,Field Caption"
    $resets.each { |resetRec| csv.puts resetRec }
    csv.close unless csv.nil?
 end

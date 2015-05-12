@@ -59,7 +59,7 @@ def emitAttributes(twb, ds)
   end
 end
 
-path = if ARGV.empty? then '*.twb' else ARGV[0] end
+path = if ARGV.empty? then '**/*.twb' else ARGV[0] end
 Dir.glob(path) { |twb| processTWB twb }
 
 $csv.close unless $csv.nil?

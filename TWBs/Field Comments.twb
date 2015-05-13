@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8' ?>
 
-<workbook source-platform='win' version='9.0' xmlns:user='http://www.tableausoftware.com/xml/user'>
+<workbook source-platform='win' version='9.0' xml:base='https://public.tableau.com' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <!-- build 9000.15.0318.1720                                -->
+  <repository-location id='TableauTools-FieldComments' path='/workbooks' revision='1.0' />
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
     <preference name='ui.shelf.height' value='26' />
@@ -21,6 +22,8 @@
             <column datatype='string' name='Comments' ordinal='7' />
           </columns>
         </relation>
+        <refresh increment-key='' incremental-updates='false'>
+        </refresh>
         <metadata-records>
           <metadata-record class='column'>
             <remote-name>Rec #</remote-name>
@@ -207,6 +210,284 @@
       </column>
       <column aggregation='Sum' datatype='integer' name='[Rec #]' role='dimension' type='ordinal'>
       </column>
+      <extract count='-1' enabled='true' units='records'>
+        <connection class='dataengine' dbname='C:\tech\Tableau\Friction\Tableau Tools\Field Comments\TT-FieldComments.tde' schema='Extract' tablename='Extract' update-time='05/12/2015 02:18:09 AM'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh increment-key='' incremental-updates='false'>
+            <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='26' timestamp-start='2015-05-12 02:18:09.599' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Comments</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Comments]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Comments</remote-alias>
+              <ordinal>0</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>21</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;\% of Commercial profit&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;Years a newborn would live if prevailing patterns are the same&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>4</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>2</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Data Source Hash</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Data Source Hash]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Data Source Hash</remote-alias>
+              <ordinal>1</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;3e7146422a5697df81aeeffdaeb353fb&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;e21a2b29dff9f550bad21f33a9028f56&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>0</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Data Source</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Data Source]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Data Source</remote-alias>
+              <ordinal>2</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;Sample - Superstore&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;World Indicators&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Field - Caption</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Field - Caption]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Field - Caption</remote-alias>
+              <ordinal>3</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;Cell Phone Subscription Rate&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;Ship Status&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>3</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Field - Db Name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Field - Db Name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Field - Db Name</remote-alias>
+              <ordinal>4</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>26</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;[Birth Rate]&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;[Tourism Outbound]&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>5</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>2</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (unique)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Field - UI Name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Field - UI Name]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Field - UI Name</remote-alias>
+              <ordinal>5</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>26</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;Birth Rate&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;Tourism Outbound&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>6</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>2</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (unique)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Number of Records</remote-name>
+              <remote-type>16</remote-type>
+              <local-name>[Number of Records]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Number of Records</remote-alias>
+              <ordinal>6</ordinal>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Min' datatype='integer'>1</statistic>
+                <statistic aggregation='Max' datatype='integer'>1</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint8&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Rec #</remote-name>
+              <remote-type>16</remote-type>
+              <local-name>[Rec #]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Rec #</remote-alias>
+              <ordinal>7</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>26</approx-count>
+              <contains-null>false</contains-null>
+              <statistics>
+                <statistic aggregation='Min' datatype='integer'>1</statistic>
+                <statistic aggregation='Max' datatype='integer'>26</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>1</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (unique)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;sint8&quot;</attribute>
+              </attributes>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Workbook</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Workbook]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Workbook</remote-alias>
+              <ordinal>8</ordinal>
+              <family>TT-FieldComments#csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <scale>1</scale>
+              <width>1073741823</width>
+              <contains-null>false</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <statistics>
+                <statistic aggregation='Min' datatype='string'>&quot;Superstore.twb&quot;</statistic>
+                <statistic aggregation='Max' datatype='string'>&quot;World Indicators.twb&quot;</statistic>
+              </statistics>
+              <attributes>
+                <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (comparable)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+                <attribute datatype='boolean' name='DebugRemoteMetadata (distinct)'>true</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (ordered)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (sort-position)'>2</attribute>
+                <attribute datatype='string' name='DebugRemoteMetadata (sort-sense)'>&quot;asc&quot;</attribute>
+                <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>1</attribute>
+                <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+              </attributes>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
       <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
@@ -366,6 +647,57 @@
     </worksheet>
   </worksheets>
   <dashboards>
+    <dashboard name='About Tableau Tools &amp; This Workbook'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='false' fontcolor='#000000' fontsize='16'>&lt;</run>
+            <run bold='false' fontcolor='#000000' fontsize='16'>Sheet Name</run>
+            <run bold='false' fontcolor='#000000' fontsize='16'>&gt;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <style>
+        <style-rule element='table'>
+          <format attr='background-color' value='#fff8de' />
+        </style-rule>
+        <style-rule element='dash-title'>
+          <format attr='background-color' value='#fae7c8' />
+          <format attr='border-color' value='#9e4c00' />
+          <format attr='border-style' value='solid' />
+        </style-rule>
+        <style-rule element='dash-container'>
+          <format attr='border-color' id='dash-zone_5' value='#cc721e' />
+          <format attr='border-style' id='dash-zone_5' value='solid' />
+        </style-rule>
+      </style>
+      <size maxheight='650' maxwidth='775' minheight='650' minwidth='775' />
+      <zones>
+        <zone h='100000' id='3' param='vert' type='layout-flow' w='100000' x='0' y='0'>
+          <zone fixed-size='45' h='8768' id='1' is-fixed='true' type='title' w='100000' x='0' y='0'>
+          </zone>
+          <zone fixed-size='46' h='8307' id='5' is-fixed='true' type='empty' w='100000' x='0' y='8768'>
+          </zone>
+          <zone h='30461' id='6' param='horz' type='layout-flow' w='100000' x='0' y='17075'>
+            <zone fixed-size='25' h='30461' id='8' is-fixed='true' type='empty' w='4774' x='0' y='17075'>
+            </zone>
+            <zone forceUpdate='true' h='30461' id='7' type='text' w='90452' x='4774' y='17075'>
+              <formatted-text>
+                <run fontcolor='#000000' fontsize='11'>This Workbook was created to demonstrate the use of Tableau Tools, located at: </run>
+                <run auto-url='true' fontcolor='#000000' fontsize='11' hyperlink='tabdoc:load-url url=&amp;quot;https://github.com/ChrisGerrard/Tableau-Tools&amp;quot;'>https://github.com/ChrisGerrard/Tableau-Tools</run>
+                <run fontcolor='#000000' fontsize='11'> to build a tool to extract and record Field comments from a collection of Tableau Workbooks.&#10;&#10;The Fields&apos; comments in this example were found by scanning Tableau Sample Workbooks from versions 8.3 and 9.0. &#10;&#10;The Tableau Tool used hereis is ExtractFieldComments.rb, and is available from GitHub here: </run>
+                <run auto-url='true' fontcolor='#000000' fontsize='11' hyperlink='tabdoc:load-url url=&amp;quot;https://github.com/ChrisGerrard/Tableau-Tools/blob/master/Ruby/ExtractFieldComments.rb&amp;quot;'>https://github.com/ChrisGerrard/Tableau-Tools/blob/master/Ruby/ExtractFieldComments.rb</run>
+                <run fontcolor='#000000' fontsize='11'>Æ &#10;&#10;&#10;</run>
+              </formatted-text>
+            </zone>
+            <zone fixed-size='25' h='30461' id='9' is-fixed='true' type='empty' w='4258' x='95226' y='17075'>
+            </zone>
+          </zone>
+          <zone h='51849' id='4' type='empty' w='100000' x='0' y='47536'>
+          </zone>
+        </zone>
+      </zones>
+    </dashboard>
     <dashboard name='Comments Distribution'>
       <layout-options>
         <title>
@@ -446,12 +778,18 @@
       </zones>
     </window>
     <window auto-hidden='0' class='dashboard' maximized='0' name='Workbook - Data Source/Field Comments'>
+      <active id='1' />
       <zones>
         <zone name='Workbook - Data Source Comments sheet'>
           <viewpoint>
             <zoom type='fit-width' />
           </viewpoint>
         </zone>
+      </zones>
+    </window>
+    <window auto-hidden='0' class='dashboard' maximized='0' name='About Tableau Tools &amp; This Workbook'>
+      <zones>
+        <zone forceUpdate='true' name='' type='text' />
       </zones>
     </window>
     <window class='hidden-worksheet' name='Comments Distribution sheet'>
@@ -1161,6 +1499,245 @@
       lZo66dnrVxsCBQmazQmEklMMiQ4SWK1qmiYwBL54qdLvOZbOkwzN/TZbiJ7P05noBV8C4zhF
       L3LUV5amKSbYb3hPcZLRNJkk2e/wNLEgiHn+JeTZWwhowQuxcOMXvBALAS14IRYCWvBCLAS0
       4IX4X1ZIgmQAVST3AAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='192' name='About Tableau Tools &amp; This Workbook' width='192'>
+      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
+      vpvLJGWLiZoIyxIE6YwsqKjf2al6ZV7a5aJ22qm5qOzQUUjCUEPlKxhJQMNBFwuWCrgmghYN
+      jNaxhQHJOtjTyx5wUb607NFCmYbdJorXUb6EnBPAkI2ajMkrGdSiAfMp1GaieB0FJaBTAZaF
+      nWaqIEMaYQsHNTzlUMNWF50t4WYdOyxUqYKNOkpsApWW8m1KiQbY36UysfBB50i8uCK+96Us
+      49UM3vZhV3SE07K3iA91MvwDnepI/CyRjCyyVJfhn+h0WHvaGI+RIr+FEYqQz8IIRUhAhCIk
+      IEIREhChCAmIUIQERChCAiIUIQERipCACEVIQIQiJCBCERIQoQgJiFCEBEQoQgIiFCEBEYqQ
+      gAhFSECEIiQgQhESEKEICYhQhAREKEICIhQhARGKkIAIRUhAhCIkIEIREhChCAmIUIQERChC
+      AiIUIQERipCACEVIQIQiJCBCERIQoQgJiFCEBEQoQgIiFCEBEYqQgAhFSECEIiQgQhESEKEI
+      CYhQhAREKEICIhQhARGKkIAIRUhAhCIkIEIREhChCAmIUIQERChCAiIUIQERipCACEVIQIQi
+      JCBCERIQoQgJiFCEBEQoQgIiFCEBEYqQgAhFSECEIiQgQhESEKEICYhQhAREKEICIhQhARGK
+      kIAIRUhAhCIkIEIREhChCAmIUIQERChCAiIUIQERipCACEVIQIQiJCBCERIQoQgJiFCEBEQo
+      QgIiFCEBEYqQgAhFSECEIiQgQhESEKEICYhQhAREKEICIhQhARGKkIAIRUhAhCIkIEIREhCh
+      CAmIUIQERChCAiIUIQERipCACEVIQIQiJCBCERIQoQgJiFCEBEQoQgIiFPn/AWuGUW8k0pY/
+      AAAAAElFTkSuQmCC
     </thumbnail>
   </thumbnails>
 </workbook>

@@ -48,6 +48,7 @@ def processTWB twbWithDir
 end
 
 init
+#system 'cls'
 
 path = if ARGV.empty? then '**/*.twb' else ARGV[0] end
 Dir.glob("*.twb") {|twb| processTWB twb }

@@ -13,8 +13,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#require 'nokogiri'
-
 require 'twb'
 
 $localurl    = 'file:///' + Dir.pwd + '/'
@@ -90,9 +88,21 @@ def sanitize(str)
 end
 
 
+system 'cls'
+puts "\n\n\t Documenting Workbooks with Tableau Tools"
+puts   "\n\t Adding Dashboard -> Worksheet -> Data Source graphs"
+puts   "\n\t https://github.com/ChrisGerrard/Tableau-Tools"
+puts   "\n"
+
+path = if ARGV.empty? then '*.twb' else ARGV[0] end
+Dir.glob(path) {|twb| doc twb }
+
+
 system "cls"
 puts "\n\n\tIdentifying the Worksheets in these Workbooks' Dashboards:\n"
 
 path = if ARGV.empty? then '*.twb' else ARGV[0] end
 
 Dir.glob(path) {|twb| processTWB twb }
+
+
